@@ -2,12 +2,11 @@
   "name": "server",
   "version": "1.0.0",
   "description": "",
-  "type": "module",
   "main": "server.js",
   "scripts": {
     "start": "node server",
     "server": "nodemon server",
-    "build":"node server"
+    "build": "node server"
   },
   "author": "Hrithik Kedare",
   "license": "ISC",
