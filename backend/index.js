@@ -11,7 +11,7 @@ const PORT = process.env.PORT || 8000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-const link = require("./routes/api/api");
+const link = require("./routes/api/link");
 
 const root = require("./routes/root");
 
