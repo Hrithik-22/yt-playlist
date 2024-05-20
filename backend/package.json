@@ -5,18 +5,18 @@
   "main": "server.js",
   "scripts": {
     "start": "node server",
-    "server": "nodemon server",
-    "build": "node server"
+    "dev": "nodemon server"
   },
   "author": "Hrithik Kedare",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
-    "dotenv": "^16.4.5",
-    "express": "^4.19.2",
-    "googleapis": "^137.1.0",
-    "nodemon": "^3.1.0",
-    "path": "^0.12.7",
-    "url": "^0.11.3"
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "googleapis": "^126.0.1",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
   }
 }
