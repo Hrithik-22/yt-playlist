@@ -20,6 +20,7 @@ app.use(cors(corsOptions));
 app.use("/", express.static(path.join(__dirname, "/public")));
 
 //routes
+app.get("/", (req, res) => res.send("Express on Vercel"));
 app.use("/", root);
 
 app.use("/link", link);
