@@ -11,13 +11,16 @@ const PORT = process.env.PORT || 8000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-const link = require("./routes/api");
+const link = require("./routes/api/link");
+
+const root = require("./routes/root");
 
 app.use(cors(corsOptions));
 
-app.use("/link", link);
+//routes
+app.use("/", root);
 
-//serve static files
+app.use("/link", link);
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
