@@ -14,6 +14,7 @@ app.use(express.urlencoded({ extended: false }));
 const link = require("./routes/api");
 
 app.use(cors(corsOptions));
+app.get("/", (req, res) => res.send("Express on Vercel"));
 
 app.use("/link", link);
 
