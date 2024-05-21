@@ -6,6 +6,7 @@ const allowedOrigins = [
   "http://localhost:5173",
   "https://playlist-calculator-yt.web.app",
   "https://yt-playlist-length-calculator.vercel.app",
+  "https://yt-playlist-calculator-omega.vercel.app",
 ];
 
 module.exports = allowedOrigins;
