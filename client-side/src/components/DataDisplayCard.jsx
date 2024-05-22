@@ -19,8 +19,9 @@ function DataDisplayCard({ data, setData }) {
     minutes:data?.avgMin,
     seconds:data?.avgSec,
    }, 
+   
     { title: "At 1.25X speed", icon: <FaFastForward />,
-    hour:data?.hour_1_25x ,
+    hour:data?.speed_1.25x?.hour ,
     minutes:data?.min_1_25x,
     seconds:data?.seconds_1_25x,
    },
