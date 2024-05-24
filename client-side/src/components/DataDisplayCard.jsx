@@ -25,31 +25,31 @@ function DataDisplayCard({ data, setData }) {
     {
       title: "At 1.25X speed",
       icon: <FaFastForward />,
-      hour: data?.speed_15?.hours,
-      minutes: data?.min_1_25x,
-      seconds: data?.seconds_1_25x,
+      hour: data?.speed_1x25x?.hours,
+      minutes: data?.speed_1x25x?.minutes,
+      seconds: data?.speed_1x25x?.seconds,
     },
-    // {
-    //   title: "At 1.5X speed",
-    //   icon: <FaFastForward />,
-    //   hour: data?.hour_1_5x,
-    //   minutes: data?.min_1_5x,
-    //   seconds: data?.seconds_1_5x,
-    // },
-    // {
-    //   title: "At 1.75X speed",
-    //   icon: <FaFastForward />,
-    //   hour: data?.hour_1_75x,
-    //   minutes: data?.min_1_75x,
-    //   seconds: data?.seconds_1_75x,
-    // },
-    // {
-    //   title: "At 2X speed",
-    //   icon: <FaFastForward />,
-    //   hour: data?.hour_2x,
-    //   minutes: data?.min_2x,
-    //   seconds: data?.seconds_2x,
-    // },
+    {
+      title: "At 1.5X speed",
+      icon: <FaFastForward />,
+      hour: data?.speed_1x5x?.hours,
+      minutes: data?.speed_1x5x?.minutes,
+      seconds: data?.speed_1x5x?.seconds,
+    },
+    {
+      title: "At 1.75X speed",
+      icon: <FaFastForward />,
+      hour: data?.speed_1x75x?.hours,
+      minutes: data?.speed_1x75x?.minutes,
+      seconds: data?.speed_1x75x?.seconds,
+    },
+    {
+      title: "At 2X speed",
+      icon: <FaFastForward />,
+      hour: data?.speed_2x?.hours,
+      minutes: data?.speed_2x?.minutes,
+      seconds: data?.speed_2x?.seconds,
+    },
   ];
   return (
     <Card className="w-4/5">
@@ -75,10 +75,14 @@ function DataDisplayCard({ data, setData }) {
                     {titleItem.title}
                   </p>
                   <p>
-                    {titleItem.hour !== 0 && `${titleItem.hour} Hours, `}
+                    {titleItem.hour !== 0 &&  
+                    titleItem.hour ? `${titleItem.hour} Hours, ` : ""
+                    }
                     {titleItem.minutes !== 0 &&
-                      `${titleItem.minutes} Minutes, `}
-                    {titleItem.seconds !== 0 && `${titleItem.seconds} Seconds`}
+                    titleItem.minutes ? `${titleItem.minutes} Minutes, ` : ""}
+                       {titleItem.seconds !== 0 &&
+                       titleItem.seconds ? `${titleItem.seconds} Seconds ` : ""
+                       }
                   </p>
                 </div>
               </CardHeader>

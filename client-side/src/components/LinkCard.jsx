@@ -6,6 +6,8 @@ import {Input} from "@nextui-org/input";
 import { useState } from "react";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { IoIosClose } from "react-icons/io";
+
 function LinkCard({ data, setData }) {
   const [inputValue, setInputValue] = useState("");
     const [error, setError] = useState(null);
@@ -90,6 +92,11 @@ function LinkCard({ data, setData }) {
             className="mr-8 flex-grow"
             value={inputValue}
             onChange={handleInputChange}
+            endContent={
+              <button className="focus:outline-none " type="button" onClick={()=>setInputValue("")} >
+                  <IoIosClose  className="size-10 text-white"/>
+              </button>
+            }
           />
           <Button radius="none" onClick={handleSubmit}>
             Submit

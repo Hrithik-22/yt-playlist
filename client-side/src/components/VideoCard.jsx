@@ -5,10 +5,15 @@ import { Image } from "@nextui-org/image";
 import { FaEye } from "react-icons/fa";
 import { FaRegThumbsUp } from "react-icons/fa";
 import { FaRegMessage } from "react-icons/fa6";
-import { CiStopwatch } from "react-icons/ci";
 import { Link } from "@nextui-org/link";
 function getYouTubeUrl(videoId) {
   return `https://www.youtube.com/watch?v=${videoId}`;
+}
+
+function formatNumber(num) {
+  if (num >= 1000000) return (num / 1000000).toFixed(1) + "M";
+  if (num >= 1000) return (num / 1000).toFixed(1) + "k";
+  return num;
 }
 const handleWatchVideo = (videoId) => {
   const youtubeUrl = getYouTubeUrl(videoId);
@@ -147,7 +152,7 @@ function VideoCard({ title, data }) {
   }
 
   return (
-    <div className="gap-2 grid grid-cols-2 sm:grid-cols-3 p-4 bg-slate-700">
+    <div className="gap-2 grid grid-cols-2 sm:grid-cols-3 p-4">
       {sortedCardsData.map((card, index) => (
         <Card key={index} radius="none" shadow="lg" className="cursor-pointer ">
           <CardHeader>
@@ -162,29 +167,29 @@ function VideoCard({ title, data }) {
             <h3 className="font-extrabold mb-4">{card.videoTitle}</h3>
             <div className="ml-4 flex flex-col gap-y-2">
               <p className="flex items-center gap-2 ">
-                <IoTimeSharp /> {card.duration.hour} hours, {card.duration.min}{" "}
-                mins, {card.duration.secs} secs
+                <IoTimeSharp /> 
+                {card.duration.hour ? `${card.duration.hour} hours, `: ""}
+                 {card.duration.min ? `${card.duration.min} mins, ` :""}
+                 {card.duration.secs ? `${card.duration.secs} secs` : ""}
+                 
               </p>
               <Divider />
 
               <p className="flex items-center gap-2 ">
-                <FaEye /> {card.viewsCount}
+                {/* card.viewsCount ==40000 then convert it into 40k */}
+                <FaEye /> {formatNumber(card.viewsCount)}
               </p>
               <Divider />
 
               <p className="flex items-center gap-2 ">
-                <FaRegThumbsUp /> {card.likeCount}{" "}
+                <FaRegThumbsUp /> {formatNumber(card.likeCount)}{" "}
               </p>
               <Divider />
 
               <p className="flex items-center gap-2 ">
-                <FaRegMessage /> {card.commentCount}
+                <FaRegMessage /> {formatNumber(card.commentCount)}
               </p>
               <Divider />
-
-              {/* <p>VideoIds: {card.videoIds}</p> */}
-              {/* Display the converted UTC time */}
-              {/* <p className="flex items-center gap-2 "><CiStopwatch  /> {card.publishedAt}</p>  */}
             </div>
           </CardBody>
           <CardFooter className="flex justify-end">

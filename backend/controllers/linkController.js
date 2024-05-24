@@ -82,6 +82,7 @@ const calculateDuration = async (req, res) => {
     }
     // Fetch video details for each chunk
     for (const chunk of videoIdsChunks) {
+      // console.log(chunk);
       let nextPageToken = null;
       do {
         const vidResponse = await youtube.videos.list({
@@ -118,9 +119,9 @@ const calculateDuration = async (req, res) => {
 
     const speedDurations = {
       speed_1x: calculateSpeedDurations(totalSeconds, 1),
-      "speed_1.25x": calculateSpeedDurations(totalSeconds, 1.25),
-      "speed_1.5x": calculateSpeedDurations(totalSeconds, 1.5),
-      "speed_1.75x": calculateSpeedDurations(totalSeconds, 1.75),
+      speed_1x25x: calculateSpeedDurations(totalSeconds, 1.25),
+      speed_1x5x: calculateSpeedDurations(totalSeconds, 1.5),
+      speed_1x75x: calculateSpeedDurations(totalSeconds, 1.75),
       speed_2x: calculateSpeedDurations(totalSeconds, 2),
     };
 

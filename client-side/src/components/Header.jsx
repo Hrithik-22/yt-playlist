@@ -1,6 +1,7 @@
 import {  Navbar, NavbarBrand,   NavbarContent,   NavbarItem,} from "@nextui-org/navbar";
 import {Link} from "@nextui-org/link";
 import logo from "../assets/yt-logo.png";
+
 function Header() {
   return (
     <Navbar>
