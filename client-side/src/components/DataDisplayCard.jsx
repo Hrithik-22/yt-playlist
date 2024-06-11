@@ -4,6 +4,7 @@ import { BsMusicNoteList } from "react-icons/bs";
 import { FaFastForward } from "react-icons/fa";
 import { Tabs, Tab } from "@nextui-org/tabs";
 import VideoCard from "./VideoCard";
+
 function DataDisplayCard({ data, setData }) {
   console.log(data);
   const CardTitle = [
@@ -51,45 +52,40 @@ function DataDisplayCard({ data, setData }) {
       seconds: data?.speed_2x?.seconds,
     },
   ];
+
   return (
-    <Card className="w-4/5">
-      <CardHeader className="flex gap-3 justify-center">
-        <div className="flex flex-col">
+    <Card className="w-full md:w-4/5 mx-auto">
+      <CardHeader className="flex flex-col md:flex-row gap-3 justify-center">
+        <div className="flex flex-col text-center md:text-left">
           <p className="text-2xl">Playlist Title: {data?.title}</p>
           <p className="text-xl">Total Videos: {data?.numberOfVideos}</p>
         </div>
       </CardHeader>
       <Divider />
-      <CardBody className="flex flex-col gap-4 flex-wrap md:flex-row md:items-center">
-        <div className="grid grid-rows-2 grid-cols-3 justify-evenly w-full  gap-x-8 gap-y-4 max-w-full ">
+      <CardBody className="flex flex-col gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-4">
           {CardTitle.map((titleItem, index) => (
             <Card
               key={index}
-              className="shadow-md  cursor-pointer  shadow-purple-400
-              scale-100 hover:scale-105 transition-all"
+              className="shadow-md cursor-pointer shadow-purple-400 scale-100 hover:scale-105 transition-all"
             >
               <CardHeader className="flex gap-3 justify-center">
-                <div className="flex flex-col">
-                  <p className="flex gap-4 items-center">
+                <div className="flex flex-col text-center">
+                  <p className="flex gap-4 items-center justify-center">
                     {titleItem.icon}
                     {titleItem.title}
                   </p>
                   <p>
-                    {titleItem.hour !== 0 &&  
-                    titleItem.hour ? `${titleItem.hour} Hours, ` : ""
-                    }
-                    {titleItem.minutes !== 0 &&
-                    titleItem.minutes ? `${titleItem.minutes} Minutes, ` : ""}
-                       {titleItem.seconds !== 0 &&
-                       titleItem.seconds ? `${titleItem.seconds} Seconds ` : ""
-                       }
+                    {titleItem.hour !== 0 && titleItem.hour ? `${titleItem.hour} Hours, ` : ""}
+                    {titleItem.minutes !== 0 && titleItem.minutes ? `${titleItem.minutes} Minutes, ` : ""}
+                    {titleItem.seconds !== 0 && titleItem.seconds ? `${titleItem.seconds} Seconds` : ""}
                   </p>
                 </div>
               </CardHeader>
             </Card>
           ))}
         </div>
-        <div className="flex w-full flex-col mt-4">
+        <div className="w-full mt-4">
           <Tabs aria-label="Options">
             <Tab key="Latest" title="Latest">
               <VideoCard title={"Latest"} data={data} />

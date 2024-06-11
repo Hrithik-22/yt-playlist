@@ -6,6 +6,7 @@ import { FaEye } from "react-icons/fa";
 import { FaRegThumbsUp } from "react-icons/fa";
 import { FaRegMessage } from "react-icons/fa6";
 import { Link } from "@nextui-org/link";
+
 function getYouTubeUrl(videoId) {
   return `https://www.youtube.com/watch?v=${videoId}`;
 }
@@ -15,25 +16,24 @@ function formatNumber(num) {
   if (num >= 1000) return (num / 1000).toFixed(1) + "k";
   return num;
 }
+
 const handleWatchVideo = (videoId) => {
   const youtubeUrl = getYouTubeUrl(videoId);
   window.open(youtubeUrl, "_blank");
 };
-function convertToUTCTime(dateString) {
-  // Create a new Date object from the ISO date string
-  const date = new Date(dateString);
 
-  // Get the UTC components
+function convertToUTCTime(dateString) {
+  const date = new Date(dateString);
   const year = date.getUTCFullYear();
-  const month = date.toLocaleString("en-US", { month: "long" }); // Get the month as a string
+  const month = date.toLocaleString("en-US", { month: "long" });
   const day = String(date.getUTCDate()).padStart(2, "0");
   const hours = String(date.getUTCHours()).padStart(2, "0");
   const minutes = String(date.getUTCMinutes()).padStart(2, "0");
-  // Construct the UTC time string
   const utcTime = `${day} ${month}, ${year} ${hours}:${minutes} UTC`;
 
   return utcTime;
 }
+
 function VideoCard({ title, data }) {
   let sortedCardsData;
 
@@ -52,7 +52,6 @@ function VideoCard({ title, data }) {
         }))
         .sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt));
       break;
-
     case "Oldest":
       sortedCardsData = data.videoTitle
         .map((videoTitle, index) => ({
@@ -67,7 +66,6 @@ function VideoCard({ title, data }) {
         }))
         .sort((a, b) => new Date(a.publishedAt) - new Date(b.publishedAt));
       break;
-
     case "Views":
       sortedCardsData = data.videoTitle
         .map((videoTitle, index) => ({
@@ -82,7 +80,6 @@ function VideoCard({ title, data }) {
         }))
         .sort((a, b) => b.viewsCount - a.viewsCount);
       break;
-
     case "Shortest":
       sortedCardsData = data.videoTitle
         .map((videoTitle, index) => ({
@@ -103,7 +100,6 @@ function VideoCard({ title, data }) {
             (b.duration.hour * 3600 + b.duration.min * 60 + b.duration.secs)
         );
       break;
-
     case "Longest":
       sortedCardsData = data.videoTitle
         .map((videoTitle, index) => ({
@@ -152,9 +148,9 @@ function VideoCard({ title, data }) {
   }
 
   return (
-    <div className="gap-2 grid grid-cols-2 sm:grid-cols-3 p-4">
+    <div className="gap-2 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 p-4">
       {sortedCardsData.map((card, index) => (
-        <Card key={index} radius="none" shadow="lg" className="cursor-pointer ">
+        <Card key={index} radius="none" shadow="lg" className="cursor-pointer">
           <CardHeader>
             <Image
               src={card.thumbnail}
@@ -164,29 +160,26 @@ function VideoCard({ title, data }) {
             />
           </CardHeader>
           <CardBody>
-            <h3 className="font-extrabold mb-4">{card.videoTitle}</h3>
+            <h3 className="font-extrabold mb-4 text-lg sm:text-xl lg:text-2xl">
+              {card.videoTitle}
+            </h3>
             <div className="ml-4 flex flex-col gap-y-2">
-              <p className="flex items-center gap-2 ">
-                <IoTimeSharp /> 
-                {card.duration.hour ? `${card.duration.hour} hours, `: ""}
-                 {card.duration.min ? `${card.duration.min} mins, ` :""}
-                 {card.duration.secs ? `${card.duration.secs} secs` : ""}
-                 
+              <p className="flex items-center gap-2 text-sm sm:text-base lg:text-lg">
+                <IoTimeSharp />
+                {card.duration.hour ? `${card.duration.hour} hours, ` : ""}
+                {card.duration.min ? `${card.duration.min} mins, ` : ""}
+                {card.duration.secs ? `${card.duration.secs} secs` : ""}
               </p>
               <Divider />
-
-              <p className="flex items-center gap-2 ">
-                {/* card.viewsCount ==40000 then convert it into 40k */}
+              <p className="flex items-center gap-2 text-sm sm:text-base lg:text-lg">
                 <FaEye /> {formatNumber(card.viewsCount)}
               </p>
               <Divider />
-
-              <p className="flex items-center gap-2 ">
-                <FaRegThumbsUp /> {formatNumber(card.likeCount)}{" "}
+              <p className="flex items-center gap-2 text-sm sm:text-base lg:text-lg">
+                <FaRegThumbsUp /> {formatNumber(card.likeCount)}
               </p>
               <Divider />
-
-              <p className="flex items-center gap-2 ">
+              <p className="flex items-center gap-2 text-sm sm:text-base lg:text-lg">
                 <FaRegMessage /> {formatNumber(card.commentCount)}
               </p>
               <Divider />
